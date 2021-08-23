@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyA436q4IeqyZ5EYLb_7cBBwO5Z8FabUgXc",
+            authDomain: "hackathon-3cb6b.firebaseapp.com",
+            databaseURL: "https://hackathon-3cb6b-default-rtdb.firebaseio.com",
+            projectId: "hackathon-3cb6b",
+            storageBucket: "hackathon-3cb6b.appspot.com",
+            messagingSenderId: "923246470384",
+            appId: "1:923246470384:web:4f37d0889bfb1a687cce35",
+            measurementId: "G-VYD7Z5ESG6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="app.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            background-image: url('https://www.logogrand.com/news/wp-content/uploads/2020/08/Restaurant-feasibility-study-TRG-Restaurant-Consultant.jpg');
+            font-weight: bolder;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav {
+            background-color: yellowgreen;
+            height: 8vh;
+            top: 0;
+            padding: 0px;
+            width: 100%;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            padding-left: 20px;
+
+        }
+
+        ul li {
+            list-style: none;
+            padding: 20px 50px 0px 0px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        ul li a:hover {
+            color: white;
+        }
+
+        #nameLi {
+            position: absolute;
+            right: 0px;
+            padding: 0;
+        }
+
+        #signOut {
+            border: none;
+            background-color: inherit;
+        }
+
+        #signOut:hover {
+            color: white;
+            cursor: pointer;
+        }
+
+        #table {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            margin: 20px;
+            border: 2px solid yellowgreen;
+            background-color: black;
+            color: yellowgreen;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        tr,
+        th,
+        td {
+            border: 2px solid yellowgreen;
+            border-collapse: collapse;
+            padding: 20px;
+            text-align: center;
+        }
+
+        th {
+            color: white;
+            font-weight: bolder;
+        }
+
+        #cancel {
+            color: red;
+            font: inherit;
+            background-color: inherit;
+            border: none;
+        }
+
+        #cancel:hover {
+            cursor: pointer;
+            color: white;
+        }
+
+        .head {
+            background-color: black;
+
+            display: flex;
+            flex-direction: row;
+            margin-top: 20px;
+
+
+        }
+
+        .btn {
+            border: none;
+            border: 2px yellowgreen solid;
+            border-collapse: collapse;
+            background-color: inherit;
+            color: yellowgreen;
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        .btn:hover {
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn2 {
+            border: none;
+            border: none;
+            border-collapse: collapse;
+            background-color: inherit;
+            color: red;
+            padding: 20px;
+            font-weight: bold;
+        }
+
+        .btn2:hover {
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body onload="placedOrders()">
+    <nav>
+        <ul>
+            <li>
+                <a href="restaurantHome.html">
+                    <h3>Home</h3>
+                </a>
+            </li>
+            <li>
+                <a href="addDishes.html">
+                    <h3>Add Dish</h3>
+                </a>
+            </li>
+            <li>
+                <a href="orders.html">
+                    <h3>Orders</h3>
+                </a>
+            </li>
+            <li id="nameLi">
+                <h3 id="name"></h3>
+                <br>
+                <button onclick="signOut()" id="signOut">Sign Out</button>
+            </li>
+        </ul>
+    </nav>
+    <div class="head">
+        <button class="btn" onclick="placedOrders()">Pending Orders</button>
+        <button class="btn" onclick="acceptedOrders()">Accepted Orders</button>
+        <button class="btn" onclick="deliveredOrders()">Delivered Orders</button>
+    </div>
+    <div id="table">
+        <table class="orderList" id="orderList">
+            
+
+        </table>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
