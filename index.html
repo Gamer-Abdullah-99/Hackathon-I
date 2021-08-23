@@ -110,12 +110,47 @@
         #changeBtn:hover {
             color: yellowgreen;
         }
+
+        @media screen and (max-width: 900px) {
+            body {
+                font-size: 70%;
+            }
+
+            h1 {
+                font-size: 90%;
+            }
+
+            input {
+                height: 50%;
+            }
+        }
+
+        @media screen and (max-width: 430px) {
+            body {
+                font-size: 20%;
+            }
+
+            h1 {
+                font-size: 100%;
+            }
+
+            #changeBtn {
+                font-size: 100%;
+            }
+
+            input {
+                height: 50%;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div id="main" class="main">
         <div class="button">
+
+            <h1 style="color: white;">Food Delivery Website</h1>
+            <br><br>
             <button onclick="restaurantSignUpForm()" id="default">Sign Up As Restaurant</button>
 
             <br><br>
